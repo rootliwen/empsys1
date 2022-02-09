@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lanqiao.empsys.dao.EmpMapper">
+
+    <resultMap id="BaseResultMap" type="com.lanqiao.empsys.model.Emp">
+            <result property="empno" column="EMPNO" jdbcType="VARCHAR"/>
+            <result property="ename" column="ENAME" jdbcType="VARCHAR"/>
+            <result property="job" column="JOB" jdbcType="VARCHAR"/>
+            <result property="mgr" column="MGR" jdbcType="VARCHAR"/>
+            <result property="hiredate" column="HIREDATE" jdbcType="VARCHAR"/>
+            <result property="sal" column="SAL" jdbcType="VARCHAR"/>
+            <result property="comm" column="COMM" jdbcType="VARCHAR"/>
+            <result property="deptno" column="DEPTNO" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        empno,ename,job,
+        mgr,hiredate,sal,
+        comm,deptno
+    </sql>
+
+    <select id="selectBySelective" parameterType="com.lanqiao.empsys.model.Emp" resultMap="BaseResultMap">
+        select
+        w.empno,
+        w.ename,
+        w.job,
+        w.mgr,
+        w.hiredate,
+        w.sal,
+        w.comm,
+        w.deptno,
+        m.ename mname,
+        d.dname
+        from emp w,emp m, dept d
+        <where>
+            and w.mgr=m.empno
+            and w.deptno=d.deptno
+            <if test="emp.ename != null and emp.ename.trim().length()>0">
+                <bind name="pattern" value="'%' + emp.ename + '%'"/>
+                and w.ename like #{pattern}
+            </if>
+            <if test="emp.job != null and emp.job.trim().length()>0">and w.job=#{emp.job}</if>
+            <if test="emp.deptno != null and emp.deptno.trim().length()>0">and w.deptno=#{emp.deptno}</if>
+        </where>
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from emp
+        where empno=#{id}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from emp
+        where 
+    </delete>
+    <insert id="insert">
+        insert into emp
+        ( EMPNO,ENAME,JOB
+        ,MGR,HIREDATE,SAL
+        ,COMM,DEPTNO)
+        values (#{EMPNO,jdbcType=VARCHAR},#{ENAME,jdbcType=VARCHAR},#{JOB,jdbcType=VARCHAR}
+        ,#{MGR,jdbcType=VARCHAR},#{HIREDATE,jdbcType=VARCHAR},#{SAL,jdbcType=VARCHAR}
+        ,#{COMM,jdbcType=VARCHAR},#{DEPTNO,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective">
+        insert into emp
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="EMPNO != null">EMPNO,</if>
+                <if test="ENAME != null">ENAME,</if>
+                <if test="JOB != null">JOB,</if>
+                <if test="MGR != null">MGR,</if>
+                <if test="HIREDATE != null">HIREDATE,</if>
+                <if test="SAL != null">SAL,</if>
+                <if test="COMM != null">COMM,</if>
+                <if test="DEPTNO != null">DEPTNO,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="EMPNO != null">#{EMPNO,jdbcType=VARCHAR},</if>
+                <if test="ENAME != null">#{ENAME,jdbcType=VARCHAR},</if>
+                <if test="JOB != null">#{JOB,jdbcType=VARCHAR},</if>
+                <if test="MGR != null">#{MGR,jdbcType=VARCHAR},</if>
+                <if test="HIREDATE != null">#{HIREDATE,jdbcType=VARCHAR},</if>
+                <if test="SAL != null">#{SAL,jdbcType=VARCHAR},</if>
+                <if test="COMM != null">#{COMM,jdbcType=VARCHAR},</if>
+                <if test="DEPTNO != null">#{DEPTNO,jdbcType=VARCHAR},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lanqiao.empsys.model.Emp">
+        update emp
+        <set>
+                <if test="EMPNO != null">
+                    EMPNO = #{EMPNO,jdbcType=VARCHAR},
+                </if>
+                <if test="ENAME != null">
+                    ENAME = #{ENAME,jdbcType=VARCHAR},
+                </if>
+                <if test="JOB != null">
+                    JOB = #{JOB,jdbcType=VARCHAR},
+                </if>
+                <if test="MGR != null">
+                    MGR = #{MGR,jdbcType=VARCHAR},
+                </if>
+                <if test="HIREDATE != null">
+                    HIREDATE = #{HIREDATE,jdbcType=VARCHAR},
+                </if>
+                <if test="SAL != null">
+                    SAL = #{SAL,jdbcType=VARCHAR},
+                </if>
+                <if test="COMM != null">
+                    COMM = #{COMM,jdbcType=VARCHAR},
+                </if>
+                <if test="DEPTNO != null">
+                    DEPTNO = #{DEPTNO,jdbcType=VARCHAR},
+                </if>
+        </set>
+        where  
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lanqiao.empsys.model.Emp">
+        update emp
+        set 
+            EMPNO =  #{EMPNO,jdbcType=VARCHAR},
+            ENAME =  #{ENAME,jdbcType=VARCHAR},
+            JOB =  #{JOB,jdbcType=VARCHAR},
+            MGR =  #{MGR,jdbcType=VARCHAR},
+            HIREDATE =  #{HIREDATE,jdbcType=VARCHAR},
+            SAL =  #{SAL,jdbcType=VARCHAR},
+            COMM =  #{COMM,jdbcType=VARCHAR},
+            DEPTNO =  #{DEPTNO,jdbcType=VARCHAR}
+        where  
+    </update>
+</mapper>

@@ -33,7 +33,7 @@ spring:
       connection-test-query: SELECT 1
 mybatis:
   #  config-location: classpath:mybatis/mybatis-config.xml
-  type-aliases-package: com.lanqaio.empsys.model
+  type-aliases-package: com.lanqiao.empsys.model
   mapper-locations: classpath:mappers/**/*.xml
 # \u5206\u9875
 pagehelper:

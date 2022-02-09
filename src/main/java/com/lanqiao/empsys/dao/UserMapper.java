@@ -1,6 +1,6 @@
-package com.lanqaio.empsys.dao;
+package com.lanqiao.empsys.dao;
 
-import com.lanqaio.empsys.model.Users;
+import com.lanqiao.empsys.model.Users;
 
 
 /**

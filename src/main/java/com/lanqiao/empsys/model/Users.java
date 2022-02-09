@@ -1,4 +1,4 @@
-package com.lanqaio.empsys.model;
+package com.lanqiao.empsys.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

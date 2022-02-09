@@ -1,8 +1,8 @@
-package com.lanqaio.empsys.service.impl;
+package com.lanqiao.empsys.service.impl;
 
-import com.lanqaio.empsys.dao.UserMapper;
-import com.lanqaio.empsys.model.Users;
-import com.lanqaio.empsys.service.IUserService;
+import com.lanqiao.empsys.dao.UserMapper;
+import com.lanqiao.empsys.model.Users;
+import com.lanqiao.empsys.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

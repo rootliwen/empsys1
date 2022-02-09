@@ -1,7 +1,6 @@
-package com.lanqaio.empsys.service;
+package com.lanqiao.empsys.service;
 
-import com.lanqaio.empsys.model.Users;
-import com.lanqaio.empsys.model.Users;
+import com.lanqiao.empsys.model.Users;
 
 /**
  * @author 张建平

@@ -1,7 +1,7 @@
-package com.lanqaio.empsys.controller;
+package com.lanqiao.empsys.controller;
 
-import com.lanqaio.empsys.model.Users;
-import com.lanqaio.empsys.service.IUserService;
+import com.lanqiao.empsys.model.Users;
+import com.lanqiao.empsys.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +28,7 @@ public class UserController {
         log.debug("" + logUser);
 
         if (logUser != null) { //success
-            return "employee/list"; // employee/list.html
+            return "redirect:/employees"; // employee/list.html
         }
         return "redirect:/";
     }
